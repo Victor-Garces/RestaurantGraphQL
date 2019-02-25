@@ -1,0 +1,17 @@
+{
+  "name": "AppgendaGraphQL",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "graphpack",
+    "build": "graphpack build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphpack": "^1.0.6",
+    "core-js": "3.0.0-beta.3"
+  }
+}
