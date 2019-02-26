@@ -1,5 +1,5 @@
 {
-  "name": "AppgendaGraphQL",
+  "name": "RestaurantGraphQL",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "3.0.0-beta.3",
     "graphpack": "^1.0.6",
-    "core-js": "3.0.0-beta.3"
+    "sequelize": "^4.42.0",
+    "tedious": "^5.0.3"
   }
 }

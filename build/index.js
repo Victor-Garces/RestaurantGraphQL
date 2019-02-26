@@ -412,10 +412,36 @@ webpackContext.id = "./src sync recursive ^\\.\\/(schema|schema\\/index)\\.(gql|
 /*!************************!*\
   !*** ./src/context.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const Sequelize = __webpack_require__(/*! sequelize */ "sequelize");
 
+const sequelize = new Sequelize({
+  database: 'Restaurant',
+  username: 'sa',
+  password: 'sa1234',
+  dialect: 'mssql',
+  host: 'WEPSYS-BLACK',
+  dialectOptions: {
+    encrypt: true,
+    instanceName: 'SQLEXPRESS'
+  }
+});
+sequelize.define('users', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  email: Sequelize.STRING,
+  password: Sequelize.STRING,
+  isActived: Sequelize.BOOLEAN
+}, {
+  timestamps: false
+});
+/* harmony default export */ __webpack_exports__["default"] = (sequelize);
 
 /***/ }),
 
@@ -430,7 +456,11 @@ webpackContext.id = "./src sync recursive ^\\.\\/(schema|schema\\/index)\\.(gql|
 __webpack_require__.r(__webpack_exports__);
 const resolvers = {
   Query: {
-    hello: () => 'world!'
+    user: (parent, {
+      id
+    }, context, info) => {
+      return context.models['users'].findByPk(id);
+    }
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (resolvers);
@@ -445,8 +475,8 @@ const resolvers = {
 /***/ (function(module, exports) {
 
 
-    var doc = {"kind":"Document","definitions":[{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"Query"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"hello"},"arguments":[],"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"directives":[]}]}],"loc":{"start":0,"end":32}};
-    doc.loc.source = {"body":"type Query {\r\n  hello: String\r\n}","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+    var doc = {"kind":"Document","definitions":[{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"Query"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"InputValueDefinition","name":{"kind":"Name","value":"id"},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"directives":[]}],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"User"}}},"directives":[]}]},{"kind":"ObjectTypeDefinition","name":{"kind":"Name","value":"User"},"interfaces":[],"directives":[],"fields":[{"kind":"FieldDefinition","name":{"kind":"Name","value":"id"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"directives":[]},{"kind":"FieldDefinition","name":{"kind":"Name","value":"email"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},"directives":[]},{"kind":"FieldDefinition","name":{"kind":"Name","value":"password"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},"directives":[]},{"kind":"FieldDefinition","name":{"kind":"Name","value":"isActived"},"arguments":[],"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},"directives":[]}]}],"loc":{"start":0,"end":133}};
+    doc.loc.source = {"body":"type Query {\r\n  user(id: Int!): User!\r\n}\r\n\r\ntype User {\r\n  id: Int!\r\n  email: String!\r\n  password: String!\r\n  isActived: Boolean! \r\n}","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
   
 
     var names = {};
@@ -569,6 +599,17 @@ module.exports = require("fs");
 /***/ (function(module, exports) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ "sequelize":
+/*!****************************!*\
+  !*** external "sequelize" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("sequelize");
 
 /***/ }),
 

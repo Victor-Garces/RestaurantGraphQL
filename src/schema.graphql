@@ -1,3 +1,10 @@
 type Query {
-  hello: String
+  user(id: Int!): User!
+}
+
+type User {
+  id: Int!
+  email: String!
+  password: String!
+  isActived: Boolean! 
 }
